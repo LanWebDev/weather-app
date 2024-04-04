@@ -1,5 +1,5 @@
 import Menu from "@/components/Menu";
-import Image from "next/image";
+import SearchBar from "@/components/SearchBar";
 
 export default function Home() {
   return (
@@ -7,7 +7,11 @@ export default function Home() {
       <header>
         <Menu />
       </header>
-      <main></main>
+      <main>
+        <section className="my-32">
+          <SearchBar />
+        </section>
+      </main>
     </>
   );
 }
