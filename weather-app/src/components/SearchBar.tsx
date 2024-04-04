@@ -2,8 +2,6 @@ import Image from "next/image";
 import React from "react";
 import searchImage from "../../public/search-svgrepo-com.svg";
 
-const searchImageSyle = "opacity-20 focus:opacity-50";
-
 const SearchBar = () => {
   return (
     <>
@@ -25,7 +23,7 @@ const SearchBar = () => {
           />
           <button
             type="submit"
-            className="text-gray-400 text-dec absolute end-2.5 bottom-2.5   hover:text-gray-600  font-medium text-base px-3 py-2 "
+            className="text-gray-400  absolute end-2.5 bottom-2   hover:text-gray-600  font-medium text-xl px-3 py-2 "
           >
             Search
           </button>

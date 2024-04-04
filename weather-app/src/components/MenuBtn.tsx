@@ -1,11 +1,8 @@
 "use client";
 import { useState } from "react";
+import MenuTabs from "./NavigationTabs";
 
-interface MenuProps {
-  onPress: () => void;
-}
-
-const MenuBtn = ({ onPress }: MenuProps) => {
+const MenuBtn = () => {
   const [isOpen, setIsOpen] = useState(false);
   const genericHamburgerLine = `h-1 w-8 my-1 rounded-full bg-white transition ease transform
       duration-300`;
@@ -15,7 +12,6 @@ const MenuBtn = ({ onPress }: MenuProps) => {
         className="flex flex-col h-12 w-12 rounded justify-center items-center group"
         onClick={() => {
           setIsOpen(!isOpen);
-          onPress();
         }}
       >
         <div
@@ -38,6 +34,12 @@ const MenuBtn = ({ onPress }: MenuProps) => {
           }`}
         />
       </button>
+
+      {isOpen && (
+        <div className="absolute pl-3 top-13 animate-fade">
+          <MenuTabs />
+        </div>
+      )}
     </>
   );
 };

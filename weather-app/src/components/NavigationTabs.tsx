@@ -4,7 +4,7 @@ import React from "react";
 const MenuTabs = () => {
   return (
     <nav>
-      <div className="bg-sky-200 p-2 max-w-max rounded-lg divide-x-0 border-2 border-gray-50 text-gray-600">
+      <div className="bg-white bg-opacity-70 p-2 max-w-max border-2  border-sky-200 text-gray-600 text-2xl  rounded-2xl ">
         <p className="border-b-2 border-gray-50 hover:text-gray-400">
           <Link href={"/favorites"}>Favorite Places</Link>
         </p>
