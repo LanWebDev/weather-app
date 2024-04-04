@@ -1,9 +1,16 @@
+"use client";
 import MenuBtn from "./MenuBtn";
+import MenuTabs from "./NavigationTabs";
 
 const Menu = () => {
+  function menuOptions() {
+    <MenuTabs />;
+  }
+
   return (
     <div className="m-4">
-      <MenuBtn />
+      <MenuTabs />
+      <MenuBtn onPress={menuOptions} />
     </div>
   );
 };

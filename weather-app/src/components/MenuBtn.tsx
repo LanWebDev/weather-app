@@ -1,7 +1,11 @@
 "use client";
 import { useState } from "react";
 
-const MenuBtn = () => {
+interface MenuProps {
+  onPress: () => void;
+}
+
+const MenuBtn = ({ onPress }: MenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const genericHamburgerLine = `h-1 w-8 my-1 rounded-full bg-white transition ease transform
       duration-300`;
@@ -9,7 +13,10 @@ const MenuBtn = () => {
     <>
       <button
         className="flex flex-col h-12 w-12 rounded justify-center items-center group"
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => {
+          setIsOpen(!isOpen);
+          onPress();
+        }}
       >
         <div
           className={`${genericHamburgerLine} ${
