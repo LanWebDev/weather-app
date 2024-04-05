@@ -7,7 +7,7 @@ const SearchBar = () => {
     <>
       <form className="max-w-md mx-auto">
         <div className="relative">
-          <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+          <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none ">
             <Image
               className="opacity-20"
               src={searchImage}
@@ -18,12 +18,12 @@ const SearchBar = () => {
           <input
             type="search"
             id="default-search"
-            className="[&::-webkit-search-cancel-button]:hidden block w-full p-3 ps-12 text-2xl text-gray-700 border-2 border-gray-300 rounded-2xl   focus:border-gray-500 outline-none pr-20"
+            className="[&::-webkit-search-cancel-button]:hidden block w-full p-3 ps-12 text-2xl text-gray-700 rounded-2xl outline-none pr-20 bg-white bg-opacity-75 placeholder-gray-400"
             placeholder="Search Places"
           />
           <button
             type="submit"
-            className="text-gray-400  absolute end-2.5 bottom-2   hover:text-gray-600  font-medium text-xl px-3 py-2 "
+            className="text-gray-500  absolute end-2.5 bottom-1.5   hover:text-gray-700  font-medium text-xl px-3 py-2 m-auto"
           >
             Search
           </button>
