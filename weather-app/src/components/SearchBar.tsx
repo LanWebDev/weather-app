@@ -16,6 +16,7 @@ const SearchBar = () => {
             />
           </div>
           <input
+            autoComplete="off"
             type="search"
             id="default-search"
             className="[&::-webkit-search-cancel-button]:hidden block w-full p-3 ps-12 text-2xl text-gray-700 rounded-2xl outline-none pr-20 bg-white bg-opacity-75 placeholder-gray-400"

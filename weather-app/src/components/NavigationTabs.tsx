@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-const MenuTabs = () => {
+const NavigationTabs = () => {
   return (
     <nav>
       <div className="bg-white bg-opacity-70 p-2 max-w-max border-2  border-sky-200 text-gray-600 text-2xl  rounded-2xl ">
@@ -16,4 +16,4 @@ const MenuTabs = () => {
   );
 };
 
-export default MenuTabs;
+export default NavigationTabs;
