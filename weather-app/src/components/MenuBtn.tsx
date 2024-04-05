@@ -6,9 +6,8 @@ import { useClickAway } from "@uidotdev/usehooks";
 
 const MenuBtn = () => {
   const [isOpen, setIsOpen] = useState(false);
-  // const [windowIsOpen, setWindowIsOpen] = useState(false);
   const ref = useClickAway<HTMLDivElement>(() => {
-    setIsOpen(!isOpen);
+    setIsOpen(false);
   });
 
   const genericHamburgerLine = `h-1 w-8 my-1 rounded-full bg-white transition ease transform
