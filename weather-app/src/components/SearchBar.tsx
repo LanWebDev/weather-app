@@ -5,7 +5,7 @@ import searchImage from "../../public/search-svgrepo-com.svg";
 const SearchBar = () => {
   return (
     <>
-      <form className="max-w-md mx-auto">
+      <form className="max-w-md mx-auto my-20">
         <div className="relative">
           <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none ">
             <Image
