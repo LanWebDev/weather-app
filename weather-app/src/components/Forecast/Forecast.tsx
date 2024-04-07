@@ -1,16 +1,14 @@
 import React from "react";
 
-import Forecast from "./Forecast";
+import HourlyForecast from "./HourlyForecast";
 import WeeklyForecast from "./WeeklyForecast";
-import Location from "./Location";
 
 const PlaceData = () => {
   return (
-    <>
-      <Location />
-      <Forecast />
+    <div className="flex justify-center items-center h-full flex-col ">
+      <HourlyForecast />
       <WeeklyForecast />
-    </>
+    </div>
   );
 };
 

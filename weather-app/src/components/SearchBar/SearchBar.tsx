@@ -1,11 +1,11 @@
 import Image from "next/image";
 import React from "react";
-import searchImage from "../../public/search-svgrepo-com.svg";
+import searchImage from "../../../public/search-svgrepo-com.svg";
 
 const SearchBar = () => {
   return (
     <>
-      <form className="max-w-md mx-auto my-20">
+      <form className="max-w-lg my-10 mx-32 flex justify-start">
         <div className="relative">
           <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none ">
             <Image

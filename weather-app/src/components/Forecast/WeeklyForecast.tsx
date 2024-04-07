@@ -4,7 +4,7 @@ import Sunny from "@/assets/icons/clear-day.svg";
 const WeeklyForecast = () => {
   return (
     <>
-      <div className=" mt-5 max-w-xl mx-auto bg-white bg-opacity-10 p-6 rounded-xl ">
+      <div className=" mt-5 max-w-xl  bg-white bg-opacity-10 p-6 rounded-xl transition ease-out hover:scale-105">
         <div className="flex justify-start">
           <p className="text-white text-2xl ">5-Day Forecast</p>
         </div>
