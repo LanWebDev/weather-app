@@ -5,7 +5,7 @@ import searchImage from "../../../public/search-svgrepo-com.svg";
 const SearchBar = () => {
   return (
     <>
-      <form className="w-[30rem] min-w-[20rem] my-40 mx-20">
+      <form className=" w-[20rem] mt-20 md:w-[30rem] lg:w-[25rem] xl:w-[30rem] lg:mt-30 xl:max-2xl:mt-40 2xl:w-[35rem] mb-5 lg:mb-20  mx-auto 2xl:m-auto">
         <div className="relative">
           <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none ">
             <Image
@@ -19,7 +19,7 @@ const SearchBar = () => {
             autoComplete="off"
             type="search"
             id="default-search"
-            className="[&::-webkit-search-cancel-button]:hidden block w-full p-3 ps-12 text-2xl text-gray-600 rounded-2xl outline-none pr-20 bg-white bg-opacity-50 placeholder-gray-500"
+            className="[&::-webkit-search-cancel-button]:hidden block w-full p-3 ps-12 text-2xl text-gray-600 rounded-2xl outline-none pr-10 bg-white bg-opacity-50 placeholder-gray-500"
             placeholder="Search Places"
           />
           <button

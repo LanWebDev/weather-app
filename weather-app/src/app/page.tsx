@@ -1,6 +1,6 @@
 import Menu from "@/components/Menu/Menu";
 import PlaceData from "@/components/Forecast/Forecast";
-import SearchBar from "@/components/SearchBar/SearchBar";
+import SearchBar from "@/components/ui/SearchBar";
 import UnitsChange from "@/components/ui/UnitsChange";
 import LocationData from "@/components/LocationData";
 
@@ -11,12 +11,12 @@ export default function Home() {
         <UnitsChange />
       </header>
       <main>
-        <div className="flex justify-evenly h-[90vh] flex-col lg:flex-row">
-          <section className=" flex flex-col items-center justify-center mx-20">
+        <div className="flex justify-evenly flex-col lg:flex-row">
+          <section className=" flex flex-col items-center justify-center">
             <SearchBar />
             <LocationData />
           </section>
-          <section className="w-[50%] ">
+          <section>
             <PlaceData />
           </section>
         </div>
