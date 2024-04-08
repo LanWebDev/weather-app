@@ -4,7 +4,7 @@ import React from "react";
 const UnitsChange = () => {
   return (
     <>
-      <div className=" flex justify-end my-4 mx-[1rem] lg:mx-[2rem] xl:mx-[6rem] 2xl:mx-[16rem] m-auto">
+      <div className=" flex justify-end my-4 mx-[1rem] lg:mx-[2rem] xl:mx-[6rem] 2xl:mx-[16rem] @media m-auto">
         <button
           name="metric"
           className="text-2xl text-white transition ease-out hover:scale-125"

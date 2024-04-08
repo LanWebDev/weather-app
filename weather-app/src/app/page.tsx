@@ -11,12 +11,12 @@ export default function Home() {
         <UnitsChange />
       </header>
       <main>
-        <div className="flex justify-evenly">
-          <section className=" flex flex-col justify-center items-center h-[90vh]">
+        <div className="flex justify-evenly h-[90vh] flex-col lg:flex-row">
+          <section className=" flex flex-col items-center justify-center mx-20">
             <SearchBar />
             <LocationData />
           </section>
-          <section className="w-[50%]">
+          <section className="w-[50%] ">
             <PlaceData />
           </section>
         </div>
