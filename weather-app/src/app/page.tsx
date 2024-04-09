@@ -1,4 +1,3 @@
-import Menu from "@/components/Menu/Menu";
 import PlaceData from "@/components/Forecast/Forecast";
 import SearchBar from "@/components/ui/SearchBar";
 import UnitsChange from "@/components/ui/UnitsChange";

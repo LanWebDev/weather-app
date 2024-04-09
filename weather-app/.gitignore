@@ -37,4 +37,4 @@ next-env.d.ts
 
 .env
 
-.weather-app-plan.png
+weather-app/public/weather-app-plan.png
