@@ -1,3 +1,4 @@
+import axios from "axios";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
@@ -5,7 +6,7 @@ export async function GET(req: NextRequest) {
     const apiKey = process.env.WEATHER_API_KEY;
     const lat = "46.5547";
     const lon = "15.6467";
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
 
     const res = await fetch(url, {
       next: {
@@ -16,6 +17,10 @@ export async function GET(req: NextRequest) {
     const data = await res.json();
 
     return NextResponse.json(data);
+
+    // const res = await axios.get(url);
+
+    // return NextResponse.json(res.data);
   } catch (error) {
     console.log("Error fetching forecast data");
 

@@ -2,11 +2,12 @@
 import axios from "axios";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-export const GlobalContext = createContext();
+const GlobalContext = createContext();
 const GlobalContextUpdate = createContext();
 
 export const GlobalContextProvider = ({ children }) => {
   const [forecast, setForecast] = useState({});
+  const [dailyForecast, setDailyForecast] = useState({});
 
   const fetchForecast = async () => {
     try {
@@ -18,12 +19,23 @@ export const GlobalContextProvider = ({ children }) => {
     }
   };
 
+  const fetchDailyForecast = async () => {
+    try {
+      const res = await axios.get("api/daily");
+
+      setDailyForecast(res.data);
+    } catch (error) {
+      console.log("Error fetching forecast data: ", error.message);
+    }
+  };
+
   useEffect(() => {
     fetchForecast();
+    fetchDailyForecast();
   }, []);
 
   return (
-    <GlobalContext.Provider value={{ forecast }}>
+    <GlobalContext.Provider value={{ forecast, dailyForecast }}>
       <GlobalContextUpdate.Provider value={{}}>
         {children}
       </GlobalContextUpdate.Provider>

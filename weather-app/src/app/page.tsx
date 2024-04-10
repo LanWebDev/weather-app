@@ -1,7 +1,7 @@
 import PlaceData from "@/components/Forecast/Forecast";
 import SearchBar from "@/components/ui/SearchBar";
 import UnitsChange from "@/components/ui/UnitsChange";
-import LocationData from "@/components/LocationData";
+import Temperature from "@/components/Temperature";
 
 export default function Home() {
   return (
@@ -13,7 +13,7 @@ export default function Home() {
         <div className="flex justify-evenly flex-col lg:flex-row">
           <section className=" flex flex-col items-center justify-center">
             <SearchBar />
-            <LocationData />
+            <Temperature />
           </section>
           <section>
             <PlaceData />
