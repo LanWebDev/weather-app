@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ContextProvider } from "./providers/ContextProviders";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -13,8 +14,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="w-full h-full bg-gradient-to-l from-cyan-500 to-blue-500 bg-no-repeat bg-fixed">
-        {children}
+      <body className="w-full h-full bg-gradient-to-r from-cyan-500 to-blue-500 bg-no-repeat bg-fixed">
+        <ContextProvider>{children}</ContextProvider>
       </body>
     </html>
   );

@@ -1,5 +1,0 @@
-
-
-import async function GET(){
-
-}
