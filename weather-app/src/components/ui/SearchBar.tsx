@@ -10,7 +10,7 @@ import {
 import { useClickAway } from "@uidotdev/usehooks";
 
 const SearchBar = () => {
-  const { geoCodedList, handleInput, inputValue } = useGlobalContext();
+  const { geoCodedList, handleInput } = useGlobalContext();
   const { setActiveCityCoords } = useGlobalContextUpdate();
   const [isActive, setIsActive] = useState(false);
   const ref = useClickAway<HTMLDivElement>(() => {
@@ -25,7 +25,6 @@ const SearchBar = () => {
     setActiveCityCoords([lat, lon]);
   }
 
-  const [hoveredIndex, setHoveredIndex] = useState<number>(0);
   return (
     <>
       <form className=" w-[20rem] mt-20 md:w-[30rem] lg:w-[25rem] xl:w-[30rem] lg:mt-30 xl:max-2xl:mt-40 2xl:w-[35rem] mb-5 lg:mb-20  mx-auto 2xl:m-auto">
@@ -77,10 +76,9 @@ const SearchBar = () => {
                   return (
                     <li
                       key={i}
-                      onMouseEnter={() => setHoveredIndex(i)}
-                      className={`py-3 rounded px-2 cursor-default hover:bg-gray-300 w-full ${
-                        hoveredIndex === i ? "bg-gray-300" : ""
-                      }`}
+                      className={
+                        "py-3 rounded px-2 cursor-default hover:bg-gray-300 "
+                      }
                       onClick={() => {
                         getClickedCoords(item.lat, item.lon);
                         setIsActive(false);

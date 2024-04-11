@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import Sunny from "@/assets/icons/clear-day.svg";
 import { useGlobalContext } from "@/app/context/globalContext";
 import { unixToDay } from "@/app/utils/misc";
 import React from "react";
@@ -99,12 +98,12 @@ const WeeklyForecast = () => {
                 </p>
                 <Image src={getIcon()} alt="weather icon" className=" pr-5" />
                 <p className="text-xl font-medium ">
-                  H:{day.maxTemp < 9 ? 0 : null}
+                  H:
                   {day.maxTemp.toFixed()}°
                 </p>
                 <div className="temperature flex-1  mx-2 h-2 rounded-lg"></div>
                 <p className="text-xl font-medium pr-5 ">
-                  L:{day.minTemp < 9 ? 0 : null}
+                  L:
                   {day.minTemp.toFixed()}°
                 </p>
               </div>
