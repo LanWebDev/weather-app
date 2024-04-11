@@ -28,7 +28,9 @@ const SearchBar = () => {
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsActive(false);
-    if (geoCodedList !== 0) {
+
+    if (geoCodedList.length === 0) return;
+    if (geoCodedList.length !== 0) {
       return setActiveCityCoords([geoCodedList[0].lat, geoCodedList[0].lon]);
     }
   }
@@ -52,7 +54,7 @@ const SearchBar = () => {
             autoComplete="off"
             type="search"
             id="default-search"
-            className="[&::-webkit-search-cancel-button]:hidden block w-full p-3 ps-12 text-2xl text-gray-600 rounded-2xl outline-none pr-10 bg-white bg-opacity-50 placeholder-gray-500"
+            className="[&::-webkit-search-cancel-button]:hidden block w-full p-3 ps-12 text-2xl text-gray-600 rounded-2xl outline-none pr-10 bg-white bg-opacity-50 placeholder-gray-500 "
             placeholder="Search Places"
             onChange={isActiveHandler}
             onChangeCapture={handleInput}
