@@ -10,7 +10,7 @@ import {
   snow,
   thunderstorm,
 } from "@/app/utils/icons";
-import Skeleton from "react-loading-skeleton";
+import SkeletonCard from "./SkeletonCard";
 
 const Location = () => {
   const { forecast } = useGlobalContext();
@@ -18,7 +18,7 @@ const Location = () => {
   const { main, name, weather } = forecast;
 
   if (!forecast || !weather) {
-    return <Skeleton />;
+    return <SkeletonCard />;
   }
 
   const temp = Math.round(main?.temp);

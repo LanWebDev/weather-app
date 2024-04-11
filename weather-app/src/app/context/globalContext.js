@@ -7,12 +7,12 @@ const GlobalContextUpdate = createContext();
 
 export const GlobalContextProvider = ({ children }) => {
   const [forecast, setForecast] = useState({});
-  const [dailyForecast, setDailyForecast] = useState({});
+  const [fiveDayForecast, setFiveDayForecast] = useState({});
 
   const fetchForecast = async () => {
     try {
       const res = await axios.get("api/weather");
-
+      console.log("forecast: ", res.data);
       setForecast(res.data);
     } catch (error) {
       console.log("Error fetching forecast data: ", error.message);
@@ -21,9 +21,9 @@ export const GlobalContextProvider = ({ children }) => {
 
   const fetchDailyForecast = async () => {
     try {
-      const res = await axios.get("api/daily");
-
-      setDailyForecast(res.data);
+      const res = await axios.get("api/fiveday");
+      console.log("fiveday: ", res.data);
+      setFiveDayForecast(res.data);
     } catch (error) {
       console.log("Error fetching forecast data: ", error.message);
     }
@@ -34,8 +34,10 @@ export const GlobalContextProvider = ({ children }) => {
     fetchDailyForecast();
   }, []);
 
+  console.log(fiveDayForecast);
+  console.log(forecast);
   return (
-    <GlobalContext.Provider value={{ forecast, dailyForecast }}>
+    <GlobalContext.Provider value={{ forecast, fiveDayForecast }}>
       <GlobalContextUpdate.Provider value={{}}>
         {children}
       </GlobalContextUpdate.Provider>

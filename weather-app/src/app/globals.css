@@ -28,3 +28,7 @@ body {
     text-wrap: balance;
   }
 }
+
+.temperature {
+  background-image: linear-gradient(to left, #00dfff 0%, #00f9ff 20%, yellow);
+}

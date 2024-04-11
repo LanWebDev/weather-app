@@ -11,36 +11,35 @@ import {
   snow,
   thunderstorm,
 } from "@/app/utils/icons";
-import { useState } from "react";
+
 import moment from "moment";
-import { log } from "console";
 
 const Forecast = () => {
-  const { forecast, dailyForecast } = useGlobalContext();
+  const { forecast, fiveDayForecast } = useGlobalContext();
 
   const { weather } = forecast;
-  const { city, list } = dailyForecast;
+  const { city, list } = fiveDayForecast;
 
-  if (!dailyForecast || !city || !list) {
+  if (!fiveDayForecast || !city || !list) {
     return <SkeletonCard />;
   }
   if (!forecast || !weather) {
     return <SkeletonCard />;
   }
 
-  const today = new Date();
-  const todayString = today.toISOString().split("T")[0];
-  console.log(todayString);
-
   //filter
-  const todaysForecast = list.filter(
+  const HourlyForecast = list.filter(
     (forecast: { dt_txt: string; main: { temp: number } }) => {
-      return forecast.dt_txt.startsWith(todayString);
+      return forecast.dt_txt;
     }
   );
-  console.log(dailyForecast);
-  console.log(todaysForecast);
-  const { main: weatherMain } = weather[0];
+  // const HourlyForecast = list.splice(1, 6);
+  console.log(HourlyForecast);
+  console.log(forecast);
+  console.log(fiveDayForecast);
+
+  const { main: weatherMain } = list[0].weather[0];
+  console.log(weatherMain);
 
   const getIcon = () => {
     switch (weatherMain) {
@@ -68,12 +67,11 @@ const Forecast = () => {
       </div>
       <hr className="mb-2 mt-1 border border-white border-opacity-50" />
       <div className="flex flex-row items-center justify-between text-white">
-        {todaysForecast.length < 1 ? (
+        {HourlyForecast.length < 1 ? (
           <div>Loading...</div>
         ) : (
-          todaysForecast
-            .slice(0, 5)
-            .map((forecast: { dt_txt: string; main: { temp: number } }) => {
+          HourlyForecast.slice(2, 7).map(
+            (forecast: { dt_txt: string; main: { temp: number } }) => {
               return (
                 <div
                   className="hover:bg-white hover:bg-opacity-10 rounded-2xl transition ease-out hover:scale-110"
@@ -82,13 +80,14 @@ const Forecast = () => {
                   <p className="font-medium text-xl text-center">
                     {moment(forecast.dt_txt).format("HH:mm")}
                   </p>
-                  <Image src={getIcon()} alt="clear weather" />
+                  <Image src={getIcon()} alt={"clear weather"} />
                   <p className="text-2xl text-center font-medium ">
                     {forecast.main.temp.toFixed()}°
                   </p>
                 </div>
               );
-            })
+            }
+          )
         )}
       </div>
     </div>
