@@ -34,13 +34,12 @@ const Forecast = () => {
     }
   );
   // const HourlyForecast = list.splice(1, 6);
-  console.log(HourlyForecast);
-  console.log(forecast);
   console.log(fiveDayForecast);
+
+  console.log(HourlyForecast);
 
   const { main: weatherMain } = list[0].weather[0];
   console.log(weatherMain);
-
   const getIcon = () => {
     switch (weatherMain) {
       case "Drizzle":
@@ -80,7 +79,7 @@ const Forecast = () => {
                   <p className="font-medium text-xl text-center">
                     {moment(forecast.dt_txt).format("HH:mm")}
                   </p>
-                  <Image src={getIcon()} alt={"clear weather"} />
+                  <Image src={getIcon()} alt="weather icon" />
                   <p className="text-2xl text-center font-medium ">
                     {forecast.main.temp.toFixed()}°
                   </p>

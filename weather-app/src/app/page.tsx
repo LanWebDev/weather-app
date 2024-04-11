@@ -11,7 +11,7 @@ export default function Home() {
       </header>
       <main>
         <div className="flex justify-evenly flex-col lg:flex-row">
-          <section className=" flex flex-col items-center justify-center">
+          <section className=" flex flex-col items-center justify-center relative">
             <SearchBar />
             <Temperature />
           </section>

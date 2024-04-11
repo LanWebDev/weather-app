@@ -47,7 +47,7 @@ const Location = () => {
   };
 
   return (
-    <div className="my-10 w-[20rem] scale-100  md:scale-[1.15] xl:scale-[1.2] 2xl:scale-[1.5] 2xl:m-auto">
+    <div className="relative my-10 w-[20rem] scale-100  md:scale-[1.15] xl:scale-[1.2] 2xl:scale-[1.5] 2xl:m-auto ">
       <div className="text-center">
         <div className="lg:flex">
           <p className="text-8xl pb-1 font-bold text-center lg:text-left">
@@ -55,7 +55,7 @@ const Location = () => {
           </p>
           <Image
             src={getIcon()}
-            alt="clear weather"
+            alt="weather icon"
             className="hidden lg:inline mx-[2rem] scale-150 m-auto"
           />
         </div>

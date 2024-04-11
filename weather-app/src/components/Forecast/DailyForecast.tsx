@@ -5,12 +5,19 @@ import { useGlobalContext } from "@/app/context/globalContext";
 import { unixToDay } from "@/app/utils/misc";
 import React from "react";
 import SkeletonCard from "../SkeletonCard";
+import {
+  clearSky,
+  cloudy,
+  drizzle,
+  rain,
+  snow,
+  thunderstorm,
+} from "@/app/utils/icons";
 
 const WeeklyForecast = () => {
   const { fiveDayForecast } = useGlobalContext();
 
   const { list } = fiveDayForecast;
-  console.log(fiveDayForecast);
 
   if (!fiveDayForecast || !list) {
     return <SkeletonCard />;
@@ -42,18 +49,35 @@ const WeeklyForecast = () => {
       maxTemp,
     };
   };
-  console.log(list);
 
   let dailyForecasts = [];
 
   for (let i = 1; i < 40; i += 8) {
     const dailyData = list.slice(i, i + 5);
-    console.log(dailyData);
-
     dailyForecasts.push(processData(dailyData));
   }
-  // dailyForecasts[0].day = "Today";
-  console.log(dailyForecasts);
+  dailyForecasts[0].day = "Today";
+
+  const { main: weatherMain } = list[0].weather[0];
+
+  const getIcon = () => {
+    switch (weatherMain) {
+      case "Drizzle":
+        return drizzle;
+      case "Rain":
+        return rain;
+      case "Snow":
+        return snow;
+      case "Clear":
+        return clearSky;
+      case "Clouds":
+        return cloudy;
+      case "Thunderstorm":
+        return thunderstorm;
+      default:
+        return clearSky;
+    }
+  };
 
   return (
     <>
@@ -67,13 +91,13 @@ const WeeklyForecast = () => {
           {dailyForecasts.map((day, i) => {
             return (
               <div
-                className="hover:bg-white hover:bg-opacity-10 rounded-2xl flex items-center justify-center m-1 transition ease-out hover:scale-110"
+                className="hover:bg-white px-1 hover:bg-opacity-10 rounded-2xl flex items-center justify-center m-1 transition ease-out hover:scale-110"
                 key={i}
               >
                 <p className="font-medium text-xl pr-5 w-[3.5rem] ">
                   {day.day}
                 </p>
-                <Image src={Sunny} alt="clear weather" className=" pr-5" />
+                <Image src={getIcon()} alt="weather icon" className=" pr-5" />
                 <p className="text-xl font-medium ">
                   H:{day.maxTemp < 9 ? 0 : null}
                   {day.maxTemp.toFixed()}°
