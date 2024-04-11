@@ -22,29 +22,8 @@ const Location = () => {
     return <SkeletonCard />;
   }
 
-  const processData = (
-    data: {
-      main: { temp_min: number };
-    }[]
-  ) => {
-    let minTemp = Number.MAX_VALUE;
-    data.forEach((day: { main: { temp_min: number } }) => {
-      if (day.main.temp_min < minTemp) {
-        minTemp = day.main.temp_min;
-      }
-    });
-    return {
-      minTemp,
-    };
-  };
-
-  let temperature = [];
-
-  const data = list.slice(1);
-  temperature.push(processData(data));
-
   const temp = Math.round(main?.temp);
-  const minTemp = Math.round(temperature[0].minTemp);
+  const minTemp = Math.round(main?.temp_min);
   const maxTemp = Math.round(main?.temp_max);
 
   const { main: weatherMain, description } = weather[0];
