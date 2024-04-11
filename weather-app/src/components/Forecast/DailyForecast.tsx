@@ -1,7 +1,10 @@
 "use client";
 import Image from "next/image";
-import { useGlobalContext } from "@/app/context/globalContext";
-import { unixToDay } from "@/app/utils/misc";
+import {
+  useCelsiusContext,
+  useGlobalContext,
+} from "@/app/context/globalContext";
+import { toFahrenheit, unixToDay } from "@/app/utils/misc";
 import React from "react";
 import SkeletonCard from "../SkeletonCard";
 import {
@@ -14,6 +17,7 @@ import {
 } from "@/app/utils/icons";
 
 const WeeklyForecast = () => {
+  const { isCelsius } = useCelsiusContext();
   const { fiveDayForecast } = useGlobalContext();
 
   const { list } = fiveDayForecast;
@@ -101,13 +105,25 @@ const WeeklyForecast = () => {
                   className=" pr-5"
                 />
                 <p className="text-xl font-medium ">
-                  H:
-                  {day.maxTemp.toFixed()}°
+                  {isCelsius ? (
+                    <>
+                      H:
+                      {day.maxTemp.toFixed()}°
+                    </>
+                  ) : (
+                    <>H:{toFahrenheit(day.maxTemp)}°</>
+                  )}
                 </p>
                 <div className="temperature flex-1  mx-2 h-2 rounded-lg"></div>
                 <p className="text-xl font-medium pr-5 ">
-                  L:
-                  {day.minTemp.toFixed()}°
+                  {isCelsius ? (
+                    <>
+                      L:
+                      {day.minTemp.toFixed()}°
+                    </>
+                  ) : (
+                    <>L:{toFahrenheit(day.minTemp)}°</>
+                  )}
                 </p>
               </div>
             );

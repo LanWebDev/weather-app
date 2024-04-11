@@ -1,7 +1,9 @@
 "use client";
 import Image from "next/image";
-import Sunny from "@/assets/icons/clear-day.svg";
-import { useGlobalContext } from "@/app/context/globalContext";
+import {
+  useCelsiusContext,
+  useGlobalContext,
+} from "@/app/context/globalContext";
 import SkeletonCard from "../SkeletonCard";
 import {
   clearSky,
@@ -13,8 +15,10 @@ import {
 } from "@/app/utils/icons";
 
 import moment from "moment";
+import { toFahrenheit } from "@/app/utils/misc";
 
 const Forecast = () => {
+  const { isCelsius } = useCelsiusContext();
   const { forecast, fiveDayForecast } = useGlobalContext();
 
   const { weather } = forecast;
@@ -82,7 +86,11 @@ const Forecast = () => {
                     alt="weather icon"
                   />
                   <p className="text-2xl text-center font-medium ">
-                    {forecast.main.temp.toFixed()}°
+                    {isCelsius ? (
+                      <>{forecast.main.temp.toFixed()}°</>
+                    ) : (
+                      <>{toFahrenheit(forecast.main.temp)}°</>
+                    )}
                   </p>
                 </div>
               );

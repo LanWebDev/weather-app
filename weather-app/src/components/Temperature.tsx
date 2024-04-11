@@ -1,7 +1,10 @@
 "use client";
 import React, { useEffect } from "react";
 import Image from "next/image";
-import { useGlobalContext } from "@/app/context/globalContext";
+import {
+  useCelsiusContext,
+  useGlobalContext,
+} from "@/app/context/globalContext";
 import {
   clearSky,
   cloudy,
@@ -11,8 +14,10 @@ import {
   thunderstorm,
 } from "@/app/utils/icons";
 import SkeletonCard from "./SkeletonCard";
+import { toFahrenheit } from "@/app/utils/misc";
 
 const Location = () => {
+  const { isCelsius } = useCelsiusContext();
   const { forecast, fiveDayForecast } = useGlobalContext();
 
   const { list } = fiveDayForecast;
@@ -52,7 +57,7 @@ const Location = () => {
       <div className="text-center">
         <div className="lg:flex">
           <p className="text-8xl pb-1 font-bold text-center lg:text-left">
-            {temp}°
+            {isCelsius ? <>{temp}°</> : <>{toFahrenheit(temp)}°</>}
           </p>
           <Image
             src={getIcon()}
@@ -65,7 +70,15 @@ const Location = () => {
         </p>
         <p className="text-2xl lg:text-left capitalize">{description} </p>
         <p className="text-xl lg:text-left">
-          H:{maxTemp}° | L:{minTemp}°
+          {isCelsius ? (
+            <>
+              H:{maxTemp}° | L:{minTemp}°
+            </>
+          ) : (
+            <>
+              H:{toFahrenheit(maxTemp)}° | L:{toFahrenheit(minTemp)}°
+            </>
+          )}
         </p>
       </div>
     </div>

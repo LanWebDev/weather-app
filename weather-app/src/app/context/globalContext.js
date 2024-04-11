@@ -6,12 +6,14 @@ import { debounce } from "lodash";
 
 const GlobalContext = createContext();
 const GlobalContextUpdate = createContext();
+const CelsiusContext = createContext();
 
 export const GlobalContextProvider = ({ children }) => {
   const [forecast, setForecast] = useState({});
   const [fiveDayForecast, setFiveDayForecast] = useState({});
   const [geoCodedList, setGeoCodedList] = useState([]);
   const [inputValue, setInputValue] = useState("");
+  const [isCelsius, setIsCelsius] = useState(true);
 
   const [activeCityCoords, setActiveCityCoords] = useState([46.5547, 15.6467]);
 
@@ -82,7 +84,9 @@ export const GlobalContextProvider = ({ children }) => {
       }}
     >
       <GlobalContextUpdate.Provider value={{ setActiveCityCoords }}>
-        {children}
+        <CelsiusContext.Provider value={{ isCelsius, setIsCelsius }}>
+          {children}
+        </CelsiusContext.Provider>
       </GlobalContextUpdate.Provider>
     </GlobalContext.Provider>
   );
@@ -90,3 +94,4 @@ export const GlobalContextProvider = ({ children }) => {
 
 export const useGlobalContext = () => useContext(GlobalContext);
 export const useGlobalContextUpdate = () => useContext(GlobalContextUpdate);
+export const useCelsiusContext = () => useContext(CelsiusContext);
