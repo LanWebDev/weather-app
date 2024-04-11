@@ -21,11 +21,11 @@ const WeeklyForecast = () => {
   if (!fiveDayForecast || !list) {
     return <SkeletonCard />;
   }
-
   const processData = (
     dailyData: {
       main: { temp_min: number; temp_max: number };
       dt: number;
+      weather: { main: string }[];
     }[]
   ) => {
     let minTemp = Number.MAX_VALUE;
@@ -46,21 +46,20 @@ const WeeklyForecast = () => {
       day: unixToDay(dailyData[0].dt),
       minTemp,
       maxTemp,
+      weatherConditon: dailyData[0].weather[0].main,
     };
   };
 
   let dailyForecasts = [];
 
-  for (let i = 1; i < 40; i += 8) {
+  for (let i = 0; i < 40; i += 8) {
     const dailyData = list.slice(i, i + 5);
     dailyForecasts.push(processData(dailyData));
   }
   dailyForecasts[0].day = "Today";
 
-  const { main: weatherMain } = list[0].weather[0];
-
-  const getIcon = () => {
-    switch (weatherMain) {
+  const getIcon = (weather: string) => {
+    switch (weather) {
       case "Drizzle":
         return drizzle;
       case "Rain":
@@ -96,7 +95,11 @@ const WeeklyForecast = () => {
                 <p className="font-medium text-xl pr-5 w-[3.5rem] ">
                   {day.day}
                 </p>
-                <Image src={getIcon()} alt="weather icon" className=" pr-5" />
+                <Image
+                  src={getIcon(day.weatherConditon)}
+                  alt="weather icon"
+                  className=" pr-5"
+                />
                 <p className="text-xl font-medium ">
                   H:
                   {day.maxTemp.toFixed()}°

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { useGlobalContext } from "@/app/context/globalContext";
 import {
@@ -42,11 +42,10 @@ const Location = () => {
 
   const data = list.slice(1);
   temperature.push(processData(data));
-  console.log(temperature);
+
   const temp = Math.round(main?.temp);
   const minTemp = Math.round(temperature[0].minTemp);
   const maxTemp = Math.round(main?.temp_max);
-  console.log(main);
 
   const { main: weatherMain, description } = weather[0];
 
