@@ -78,9 +78,7 @@ export const GlobalContextProvider = ({ children }) => {
         forecast,
         fiveDayForecast,
         geoCodedList,
-        inputValue,
         handleInput,
-        setActiveCityCoords,
       }}
     >
       <GlobalContextUpdate.Provider value={{ setActiveCityCoords }}>

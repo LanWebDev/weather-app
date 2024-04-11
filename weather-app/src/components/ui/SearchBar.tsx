@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import searchImage from "../../../public/search-svgrepo-com.svg";
 import {
   useGlobalContext,
@@ -25,9 +25,20 @@ const SearchBar = () => {
     setActiveCityCoords([lat, lon]);
   }
 
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setIsActive(false);
+    if (geoCodedList !== 0) {
+      return setActiveCityCoords([geoCodedList[0].lat, geoCodedList[0].lon]);
+    }
+  }
+
   return (
     <>
-      <form className=" w-[20rem] mt-20 md:w-[30rem] lg:w-[25rem] xl:w-[30rem] lg:mt-30 xl:max-2xl:mt-40 2xl:w-[35rem] mb-5 lg:mb-20  mx-auto 2xl:m-auto">
+      <form
+        className=" w-[20rem] mt-20 md:w-[30rem] lg:w-[25rem] xl:w-[30rem] lg:mt-30 xl:max-2xl:mt-40 2xl:w-[35rem] mb-5 lg:mb-20  mx-auto 2xl:m-auto"
+        onSubmit={handleSubmit}
+      >
         <div className="relative">
           <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none ">
             <Image
@@ -45,6 +56,7 @@ const SearchBar = () => {
             placeholder="Search Places"
             onChange={isActiveHandler}
             onChangeCapture={handleInput}
+            required
           />
           <button
             type="submit"
