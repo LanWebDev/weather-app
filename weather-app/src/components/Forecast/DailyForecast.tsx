@@ -114,8 +114,8 @@ const WeeklyForecast = () => {
                     <>H:{toFahrenheit(day.maxTemp)}°</>
                   )}
                 </p>
-                <div className="temperature flex-1  mx-2 h-2 rounded-lg"></div>
-                <p className="text-xl font-medium pr-5 ">
+                <div className="temperature flex-1  mx-2 h-2 rounded-lg hidden xxs:inline "></div>
+                <p className="text-xl font-medium pr-5 mx-3 xxs:mx-0">
                   {isCelsius ? (
                     <>
                       L:

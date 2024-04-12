@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+
 import {
   useCelsiusContext,
   useGlobalContext,
@@ -31,12 +32,25 @@ const Forecast = () => {
     return <SkeletonCard />;
   }
 
+  const today = new Date();
+  let tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
+  const todayString = today.toISOString().split("T")[0];
+  const tomorrowString = tomorrow.toISOString().split("T")[0];
   //filter
-  const HourlyForecast = list.filter(
+  const HourlyForecastToday = list.filter(
     (forecast: { dt_txt: string; main: { temp: number } }) => {
-      return forecast.dt_txt;
+      return forecast.dt_txt.startsWith(todayString);
     }
   );
+  const HourlyForecastTomorrow = list.filter(
+    (forecast: { dt_txt: string; main: { temp: number } }) => {
+      return forecast.dt_txt.startsWith(tomorrowString);
+    }
+  );
+
+  const HourlyForecast = [...HourlyForecastToday, ...HourlyForecastTomorrow];
 
   const getIcon = (weather: string) => {
     switch (weather) {
@@ -67,7 +81,7 @@ const Forecast = () => {
         {HourlyForecast.length < 1 ? (
           <div>Loading...</div>
         ) : (
-          HourlyForecast.slice(1, 6).map(
+          HourlyForecast.slice(0, 5).map(
             (forecast: {
               dt_txt: string;
               main: { temp: number };
