@@ -1,27 +1,21 @@
 "use client";
 import {
   useCelsiusContext,
+  useGlobalContext,
   useGlobalContextUpdate,
 } from "@/app/context/globalContext";
-import React, { MouseEvent } from "react";
-import { useGeolocated } from "react-geolocated";
-export const kevlinToCelcius = (kelvin: number) => {
-  return Math.round(kelvin - 273.15);
-};
+import React from "react";
 
 const UnitsChange = () => {
   const { isCelsius, setIsCelsius } = useCelsiusContext();
+  const { coords, isGeolocationAvailable, isGeolocationEnabled } =
+    useGlobalContext();
   const { setActiveCityCoords } = useGlobalContextUpdate();
 
-  const { coords, isGeolocationAvailable, isGeolocationEnabled } =
-    useGeolocated({
-      positionOptions: {
-        enableHighAccuracy: false,
-      },
-      userDecisionTimeout: 5000,
-    });
   function getUserLocation(lat: number | undefined, lon: number | undefined) {
-    return setActiveCityCoords([lat, lon]);
+    if (isGeolocationAvailable && isGeolocationEnabled && coords) {
+      return setActiveCityCoords([lat, lon]);
+    }
   }
   return (
     <>
@@ -70,11 +64,7 @@ const UnitsChange = () => {
         </button>
       </div>
       <div className="absolute mx-auto left-0 right-0 text-center text-red-200">
-        {!isGeolocationAvailable ? (
-          <p>Your browser does not support Geolocation</p>
-        ) : !isGeolocationEnabled ? (
-          <p>Geolocation is not enabled</p>
-        ) : null}
+        {!isGeolocationEnabled && <div>Geolocation is not enabled</div>}
       </div>
     </>
   );

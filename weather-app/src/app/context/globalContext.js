@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 import { debounce } from "lodash";
+import { useGeolocated } from "react-geolocated";
 
 const GlobalContext = createContext();
 const GlobalContextUpdate = createContext();
@@ -18,6 +19,14 @@ export const GlobalContextProvider = ({ children }) => {
   const [activeCityCoords, setActiveCityCoords] = useState([
     52.520008, 13.404954,
   ]);
+
+  const { coords, isGeolocationAvailable, isGeolocationEnabled } =
+    useGeolocated({
+      positionOptions: {
+        enableHighAccuracy: true,
+      },
+      userDecisionTimeout: 5000,
+    });
 
   console.log(activeCityCoords);
   const fetchForecast = async (lat, lon) => {
@@ -84,6 +93,9 @@ export const GlobalContextProvider = ({ children }) => {
         fiveDayForecast,
         geoCodedList,
         handleInput,
+        coords,
+        isGeolocationAvailable,
+        isGeolocationEnabled,
       }}
     >
       <GlobalContextUpdate.Provider value={{ setActiveCityCoords }}>
