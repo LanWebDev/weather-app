@@ -1,6 +1,5 @@
 import "./globals.css";
 import { ContextProvider } from "./providers/ContextProviders";
-import Sun from "@/assets/icons/clear-day.svg";
 
 export default function RootLayout({
   children,
@@ -13,12 +12,13 @@ export default function RootLayout({
         <main>
           <ContextProvider>{children}</ContextProvider>
         </main>
-        <footer className="py-4 ">
-          <div className="group flex items-center justify-center gap-1 text-gray-200">
-            <span className="transition ease-out hover:scale-120 cur">
-              &#x276E;
+        <footer className=" cursor-default grid place-items-center py-4">
+          <div className="typewriter text-gray-200 ">
+            <span className="tracking-[0.1rem] ">{"</> "}</span>
+            Made with <span className="animate-heartbeat">❤️</span> by{" "}
+            <span className="text-green-300 tracking-[0.025rem] font-bold">
+              Lan Skrobar
             </span>
-            Made with love by Lan Skrobar
           </div>
         </footer>
       </body>
