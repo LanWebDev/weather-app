@@ -15,8 +15,11 @@ export const GlobalContextProvider = ({ children }) => {
   const [inputValue, setInputValue] = useState("");
   const [isCelsius, setIsCelsius] = useState(true);
 
-  const [activeCityCoords, setActiveCityCoords] = useState([46.5547, 15.6467]);
+  const [activeCityCoords, setActiveCityCoords] = useState([
+    52.520008, 13.404954,
+  ]);
 
+  console.log(activeCityCoords);
   const fetchForecast = async (lat, lon) => {
     try {
       const res = await axios.get(`api/weather?lat=${lat}&lon=${lon}`);

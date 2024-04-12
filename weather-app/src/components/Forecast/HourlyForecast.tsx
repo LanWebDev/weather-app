@@ -24,9 +24,7 @@ const Forecast = () => {
 
   const { weather } = forecast;
   const { city, list } = fiveDayForecast;
-
-  console.log(fiveDayForecast);
-
+  console.log(forecast);
   if (!fiveDayForecast || !city || !list) {
     return <SkeletonCard />;
   }
