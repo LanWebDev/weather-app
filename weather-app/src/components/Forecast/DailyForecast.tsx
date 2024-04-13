@@ -54,7 +54,7 @@ const WeeklyForecast = () => {
           {dailyForecasts.map((day, i) => {
             return (
               <div
-                className="hover:bg-white px-1 hover:bg-opacity-10 rounded-2xl flex items-center justify-center m-1 transition ease-out hover:scale-110"
+                className="hover:bg-white px-1 hover:bg-opacity-10 rounded-2xl flex items-center justify-evenly m-1 transition ease-out hover:scale-110"
                 key={i}
               >
                 <p className="font-medium text-xl pr-5 w-[3.5rem] ">
@@ -65,7 +65,7 @@ const WeeklyForecast = () => {
                   alt="weather icon"
                   className=" pr-5"
                 />
-                <p className="text-xl font-medium ">
+                <p className="text-xl font-medium w-[3rem]">
                   {isCelsius ? (
                     <>
                       H:
@@ -76,7 +76,7 @@ const WeeklyForecast = () => {
                   )}
                 </p>
                 <div className="temperature flex-1  mx-2 h-2 rounded-lg hidden xxs:inline "></div>
-                <p className="text-xl font-medium pr-5 mx-3 xxs:mx-0">
+                <p className="text-xl font-medium pr-5 mx-3 w-[3rem] xxs:mx-0">
                   {isCelsius ? (
                     <>
                       L:

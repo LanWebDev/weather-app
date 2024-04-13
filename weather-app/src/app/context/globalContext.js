@@ -17,7 +17,7 @@ export const GlobalContextProvider = ({ children }) => {
   const [isCelsius, setIsCelsius] = useState(true);
 
   const [activeCityCoords, setActiveCityCoords] = useState([
-    52.520008, 13.404954,
+    34.052235, -118.243683,
   ]);
 
   const { coords, isGeolocationAvailable, isGeolocationEnabled } =
@@ -28,6 +28,7 @@ export const GlobalContextProvider = ({ children }) => {
       userDecisionTimeout: 5000,
     });
 
+  // forecast
   const fetchForecast = async (lat, lon) => {
     try {
       const res = await axios.get(`api/weather?lat=${lat}&lon=${lon}`);
@@ -49,6 +50,7 @@ export const GlobalContextProvider = ({ children }) => {
     }
   };
 
+  //dailyy/hourly forecast
   const fetchDailyForecast = async (lat, lon) => {
     try {
       const res = await axios.get(`api/fiveday?lat=${lat}&lon=${lon}`);

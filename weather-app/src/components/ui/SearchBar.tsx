@@ -1,34 +1,40 @@
 "use client";
 
 import Image from "next/image";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useState, useRef } from "react";
 import searchImage from "../../../public/search-svgrepo-com.svg";
 import {
   useGlobalContext,
   useGlobalContextUpdate,
 } from "@/app/context/globalContext";
-import { useClickAway } from "@uidotdev/usehooks";
-import { getIcon } from "@/app/utils/icons";
+
+import { useClickAway } from "ahooks";
 
 const SearchBar = () => {
   const { geoCodedList, handleInput } = useGlobalContext();
   const { setActiveCityCoords } = useGlobalContextUpdate();
   const [isActive, setIsActive] = useState(false);
-  const ref = useClickAway<HTMLDivElement>(() => {
+  const [title, setTitle] = useState("");
+
+  const ref1 = useRef(null);
+  const ref2 = useRef(null);
+  useClickAway(() => {
     setIsActive(false);
-  });
+  }, [ref1, ref2]);
 
   function isActiveHandler() {
     setIsActive(true);
   }
 
   function getClickedCoords(lat: number, lon: number) {
+    setTitle("");
     setActiveCityCoords([lat, lon]);
   }
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsActive(false);
+    setTitle("");
 
     if (geoCodedList.length === 0) return;
     if (geoCodedList.length !== 0) {
@@ -42,7 +48,7 @@ const SearchBar = () => {
         className=" w-[20rem] mt-20 md:w-[30rem] lg:w-[25rem] xl:w-[30rem] lg:mt-30 xl:max-2xl:mt-40 2xl:w-[35rem] mb-5 lg:mb-20  mx-auto 2xl:m-auto"
         onSubmit={handleSubmit}
       >
-        <div className="relative">
+        <div className="relative " ref={ref1}>
           <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none ">
             <Image
               className="opacity-20"
@@ -57,9 +63,13 @@ const SearchBar = () => {
             id="default-search"
             className="[&::-webkit-search-cancel-button]:hidden block w-full p-3 ps-12 text-2xl text-gray-600 rounded-2xl outline-none pr-10 bg-white bg-opacity-50 placeholder-gray-500 "
             placeholder="Search Places"
-            onChange={isActiveHandler}
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+            onFocus={isActiveHandler}
             onChangeCapture={handleInput}
             required
+            value={title}
           />
           <button
             type="submit"
@@ -72,7 +82,7 @@ const SearchBar = () => {
         {isActive && (
           <div
             className="absolute w-[20rem]  md:w-[30rem] lg:w-[25rem] xl:w-[30rem]   2xl:w-[35rem]  2xl:m-auto z-10"
-            ref={ref}
+            ref={ref2}
           >
             <ul className="mt-[0.1rem] w-full py-3 px-3 text-gray-600 rounded-xl outline-none  bg-white bg-opacity-90  ">
               {geoCodedList.length === 0 && <p>No results.</p>}

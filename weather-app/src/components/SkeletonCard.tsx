@@ -9,7 +9,6 @@ const SkeletonCard = () => {
       <div className="h-2 bg-sky-300 rounded-full  max-w-[330px] mb-2.5"></div>
       <div className="h-2 bg-sky-300 rounded-full max-w-[300px] mb-2.5"></div>
       <div className="h-2 bg-sky-300 rounded-full max-w-[360px]"></div>
-      <span className="sr-only">Loading...</span>
     </div>
   );
 };

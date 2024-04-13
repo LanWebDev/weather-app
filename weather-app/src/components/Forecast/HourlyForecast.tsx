@@ -8,6 +8,7 @@ import {
 import { getIcon } from "@/app/utils/icons";
 import { toFahrenheit } from "@/app/utils/misc";
 import SkeletonCard from "../SkeletonCard";
+import moment from "moment";
 
 const Forecast = () => {
   const { isCelsius } = useCelsiusContext();
@@ -23,10 +24,6 @@ const Forecast = () => {
     return <SkeletonCard />;
   }
 
-  function extractHoursFromDate(dt: number): number {
-    const date = new Date(dt * 1000);
-    return date.getHours() - 2;
-  }
   const today = new Date();
   let tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
@@ -46,7 +43,6 @@ const Forecast = () => {
   );
 
   const HourlyForecast = [...HourlyForecastToday, ...HourlyForecastTomorrow];
-
   return (
     <div className=" md:scale-125 lg:max-2xl:scale-100 w-auto xl:min-w-[35rem] justify-evenly bg-white bg-opacity-10 p-6 rounded-xl transition ease-out md:hover:scale-[1.3] lg:hover:scale-[1.05] 2xl:hover:scale-[1.3] cursor-default">
       <div className="justify-start">
@@ -70,7 +66,7 @@ const Forecast = () => {
                 key={forecast.dt_txt}
               >
                 <p className="font-medium text-xl text-center">
-                  {index === 0 ? "Now" : extractHoursFromDate(forecast.dt)}
+                  {index === 0 ? "Now" : moment(forecast.dt_txt).format("H")}
                 </p>
                 <Image
                   src={getIcon(
