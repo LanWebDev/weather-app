@@ -9,13 +9,12 @@ import SkeletonCard from "./SkeletonCard";
 import { toFahrenheit } from "@/app/utils/misc";
 import { getIcon } from "@/app/utils/icons";
 
-const Location = () => {
+const Temperature = () => {
   const { forecast, fiveDayForecast } = useGlobalContext();
   const { isCelsius } = useCelsiusContext();
 
   const { main, name, weather } = forecast;
-  const { city, list } = fiveDayForecast;
-
+  const { city } = fiveDayForecast;
   if (!forecast || !weather) {
     return <SkeletonCard />;
   }
@@ -24,8 +23,6 @@ const Location = () => {
   const minTemp = Math.round(main?.temp_min);
   const maxTemp = Math.round(main?.temp_max);
 
-  //makes the whole api stop working for some reason
-  // const country = city.country;
   const { description } = weather;
 
   const icon = getIcon(weather[0].description, weather[0].icon);
@@ -46,7 +43,7 @@ const Location = () => {
           </div>
           <p className="text-3xl md:text-5xl lg:text-left break-normal mb-1">
             {name}
-            {/* <span className="text-sm ml-1">{country}</span> */}
+            <span className="text-sm ml-1">{city && city.country}</span>
           </p>
 
           <p className="text-2xl lg:text-left capitalize">{description} </p>
@@ -67,4 +64,4 @@ const Location = () => {
   );
 };
 
-export default Location;
+export default Temperature;

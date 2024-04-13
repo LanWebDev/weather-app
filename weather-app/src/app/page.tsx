@@ -7,9 +7,6 @@ export const metadata = {
   title: "Weather app",
   description: "Weather app",
   keywords: ["Weather", "Weather App"],
-  openGraph: {
-    images: "https://photos.sphereshowcase.com/tBJczsgyzUAP3woETDr31.jpg",
-  },
 };
 
 export default function Home() {

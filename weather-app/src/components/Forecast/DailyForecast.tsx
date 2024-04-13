@@ -18,6 +18,7 @@ const WeeklyForecast = () => {
   if (!fiveDayForecast || !list) {
     return <SkeletonCard />;
   }
+
   const processData = (
     dailyData: {
       main: { temp_min: number; temp_max: number };
@@ -25,24 +26,10 @@ const WeeklyForecast = () => {
       weather: { description: string; icon: string }[];
     }[]
   ) => {
-    let minTemp = Number.MAX_VALUE;
-    let maxTemp = Number.MIN_VALUE;
-
-    dailyData.forEach(
-      (day: { main: { temp_min: number; temp_max: number }; dt: number }) => {
-        if (day.main.temp_min < minTemp) {
-          minTemp = day.main.temp_min;
-        }
-        if (day.main.temp_max > maxTemp) {
-          maxTemp = day.main.temp_max;
-        }
-      }
-    );
-
     return {
       day: unixToDay(dailyData[0].dt),
-      minTemp,
-      maxTemp,
+      minTemp: dailyData[0].main.temp_min,
+      maxTemp: dailyData[0].main.temp_max,
       weatherConditon: dailyData[0].weather[0].description,
       icon: dailyData[0].weather[0].icon,
     };
@@ -55,7 +42,6 @@ const WeeklyForecast = () => {
     dailyForecasts.push(processData(dailyData));
   }
   dailyForecasts[0].day = "Today";
-
   return (
     <>
       <div className=" md:scale-125 lg:max-2xl:scale-100 mt-5 md:mt-24 lg:max-2xl:mt-5 w-auto xxs:w-[23rem] xl:min-w-[35rem] bg-white bg-opacity-10 p-6 rounded-xl transition ease-out md:hover:scale-[1.3] lg:hover:scale-[1.05] 2xl:hover:scale-[1.3] cursor-default">
