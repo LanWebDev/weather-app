@@ -21,7 +21,7 @@ const UnitsChange = () => {
     <>
       <div className=" flex justify-end my-4 mx-[2rem] lg:mx-[4rem] xl:mx-[8rem] 2xl:mx-[20rem] ">
         <button
-          className=" flex transition ease-out hover:scale-105 p-2 mr-5 rounded-lg bg-white bg-opacity-30 hover:bg-gray-500 text-white "
+          className=" flex transition ease-out  p-2 mr-5 rounded-lg bg-white bg-opacity-30 active:bg-gray-500 text-white "
           onClick={() => getUserLocation(coords?.latitude, coords?.longitude)}
         >
           <svg
@@ -46,7 +46,7 @@ const UnitsChange = () => {
           My location
         </button>
         <button
-          className={`text-2xl text-white transition ease-out hover:scale-125 ${
+          className={` text-2xl text-white transition ease-out hover:scale-125 ${
             isCelsius ? "active" : null
           } [&.active]:underline`}
           onClick={() => setIsCelsius(true)}
