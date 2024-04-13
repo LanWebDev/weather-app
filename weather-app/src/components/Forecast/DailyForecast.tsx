@@ -41,7 +41,6 @@ const WeeklyForecast = () => {
     const dailyData = list.slice(i, i + 5);
     dailyForecasts.push(processData(dailyData));
   }
-  console.log(dailyForecasts);
   dailyForecasts[0].day = "Today";
   return (
     <>
