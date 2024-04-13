@@ -76,7 +76,7 @@ const WeeklyForecast = () => {
                   )}
                 </p>
                 <div className="temperature flex-1  mx-2 h-2 rounded-lg hidden xxs:inline "></div>
-                <p className="text-xl font-medium pr-5 mx-3 w-[3.5rem] xxs:mx-0">
+                <p className="text-xl font-medium w-[3.5rem] ">
                   {isCelsius ? (
                     <>
                       L:
