@@ -28,7 +28,6 @@ export const GlobalContextProvider = ({ children }) => {
       userDecisionTimeout: 5000,
     });
 
-  console.log(activeCityCoords);
   const fetchForecast = async (lat, lon) => {
     try {
       const res = await axios.get(`api/weather?lat=${lat}&lon=${lon}`);

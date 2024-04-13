@@ -5,24 +5,17 @@ import {
   useCelsiusContext,
   useGlobalContext,
 } from "@/app/context/globalContext";
-import {
-  clearSky,
-  cloudy,
-  drizzle,
-  rain,
-  snow,
-  thunderstorm,
-} from "@/app/utils/icons";
 import SkeletonCard from "./SkeletonCard";
 import { toFahrenheit } from "@/app/utils/misc";
+import { getIcon } from "@/app/utils/icons";
 
 const Location = () => {
   const { forecast, fiveDayForecast } = useGlobalContext();
   const { isCelsius } = useCelsiusContext();
 
   const { main, name, weather } = forecast;
-  const { city } = fiveDayForecast;
-  console.log(city);
+  const { city, list } = fiveDayForecast;
+
   if (!forecast || !weather) {
     return <SkeletonCard />;
   }
@@ -30,28 +23,12 @@ const Location = () => {
   const temp = Math.round(main?.temp);
   const minTemp = Math.round(main?.temp_min);
   const maxTemp = Math.round(main?.temp_max);
+
+  //makes the whole api stop working for some reason
   // const country = city.country;
+  const { description } = weather;
 
-  const { main: weatherMain, description } = weather[0];
-
-  const getIcon = () => {
-    switch (weatherMain) {
-      case "Drizzle":
-        return drizzle;
-      case "Rain":
-        return rain;
-      case "Snow":
-        return snow;
-      case "Clear":
-        return clearSky;
-      case "Clouds":
-        return cloudy;
-      case "Thunderstorm":
-        return thunderstorm;
-      default:
-        return clearSky;
-    }
-  };
+  const icon = getIcon(weather[0].description, weather[0].icon);
 
   return (
     <>
@@ -62,7 +39,7 @@ const Location = () => {
               {isCelsius ? <>{temp}°</> : <>{toFahrenheit(temp)}°</>}
             </p>
             <Image
-              src={getIcon()}
+              src={icon}
               alt="weather icon"
               className="hidden lg:inline mx-[2rem] scale-150 m-auto"
             />

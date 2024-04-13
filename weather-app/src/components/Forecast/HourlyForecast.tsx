@@ -6,17 +6,9 @@ import {
   useGlobalContext,
 } from "@/app/context/globalContext";
 import SkeletonCard from "../SkeletonCard";
-import {
-  clearSky,
-  cloudy,
-  drizzle,
-  rain,
-  snow,
-  thunderstorm,
-} from "@/app/utils/icons";
-
 import moment from "moment";
 import { toFahrenheit } from "@/app/utils/misc";
+import { getIcon } from "@/app/utils/icons";
 
 const Forecast = () => {
   const { isCelsius } = useCelsiusContext();
@@ -24,7 +16,7 @@ const Forecast = () => {
 
   const { weather } = forecast;
   const { city, list } = fiveDayForecast;
-  console.log(forecast);
+
   if (!fiveDayForecast || !city || !list) {
     return <SkeletonCard />;
   }
@@ -50,27 +42,8 @@ const Forecast = () => {
     }
   );
 
+  console.log(first);
   const HourlyForecast = [...HourlyForecastToday, ...HourlyForecastTomorrow];
-
-  const getIcon = (weather: string) => {
-    switch (weather) {
-      case "Drizzle":
-        return drizzle;
-      case "Rain":
-        return rain;
-      case "Snow":
-        return snow;
-      case "Clear":
-        return clearSky;
-      case "Clouds":
-        return cloudy;
-      case "Thunderstorm":
-        return thunderstorm;
-      default:
-        return clearSky;
-    }
-  };
-
   return (
     <div className=" md:scale-125 lg:max-2xl:scale-100 w-auto xl:min-w-[35rem] justify-evenly bg-white bg-opacity-10 p-6 rounded-xl transition ease-out md:hover:scale-[1.3] lg:hover:scale-[1.05] 2xl:hover:scale-[1.3] cursor-default">
       <div className="justify-start">
@@ -82,21 +55,29 @@ const Forecast = () => {
           <div>Loading...</div>
         ) : (
           HourlyForecast.slice(0, 5).map(
-            (forecast: {
-              dt_txt: string;
-              main: { temp: number };
-              weather: { main: string }[];
-            }) => {
+            (
+              forecast: {
+                dt_txt: string;
+                main: { temp: number };
+                weather: { description: string; icon: string }[];
+              },
+              index
+            ) => {
               return (
                 <div
                   className="hover:bg-white hover:bg-opacity-10 rounded-2xl transition ease-out hover:scale-110"
                   key={forecast.dt_txt}
                 >
                   <p className="font-medium text-xl text-center">
-                    {moment(forecast.dt_txt).format("HH:mm")}
+                    {index === 0
+                      ? "Now"
+                      : moment(forecast.dt_txt).format("HH:mm")}
                   </p>
                   <Image
-                    src={getIcon(forecast.weather[0].main)}
+                    src={getIcon(
+                      forecast.weather[0].description,
+                      forecast.weather[0].icon
+                    )}
                     alt="weather icon"
                   />
                   <p className="text-2xl text-center font-medium ">

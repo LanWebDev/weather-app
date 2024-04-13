@@ -8,6 +8,7 @@ import {
   useGlobalContextUpdate,
 } from "@/app/context/globalContext";
 import { useClickAway } from "@uidotdev/usehooks";
+import { getIcon } from "@/app/utils/icons";
 
 const SearchBar = () => {
   const { geoCodedList, handleInput } = useGlobalContext();

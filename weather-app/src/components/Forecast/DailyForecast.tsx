@@ -7,14 +7,7 @@ import {
 import { toFahrenheit, unixToDay } from "@/app/utils/misc";
 import React from "react";
 import SkeletonCard from "../SkeletonCard";
-import {
-  clearSky,
-  cloudy,
-  drizzle,
-  rain,
-  snow,
-  thunderstorm,
-} from "@/app/utils/icons";
+import { getIcon } from "@/app/utils/icons";
 
 const WeeklyForecast = () => {
   const { isCelsius } = useCelsiusContext();
@@ -29,7 +22,7 @@ const WeeklyForecast = () => {
     dailyData: {
       main: { temp_min: number; temp_max: number };
       dt: number;
-      weather: { main: string }[];
+      weather: { description: string; icon: string }[];
     }[]
   ) => {
     let minTemp = Number.MAX_VALUE;
@@ -50,7 +43,8 @@ const WeeklyForecast = () => {
       day: unixToDay(dailyData[0].dt),
       minTemp,
       maxTemp,
-      weatherConditon: dailyData[0].weather[0].main,
+      weatherConditon: dailyData[0].weather[0].description,
+      icon: dailyData[0].weather[0].icon,
     };
   };
 
@@ -61,25 +55,6 @@ const WeeklyForecast = () => {
     dailyForecasts.push(processData(dailyData));
   }
   dailyForecasts[0].day = "Today";
-
-  const getIcon = (weather: string) => {
-    switch (weather) {
-      case "Drizzle":
-        return drizzle;
-      case "Rain":
-        return rain;
-      case "Snow":
-        return snow;
-      case "Clear":
-        return clearSky;
-      case "Clouds":
-        return cloudy;
-      case "Thunderstorm":
-        return thunderstorm;
-      default:
-        return clearSky;
-    }
-  };
 
   return (
     <>
@@ -100,7 +75,7 @@ const WeeklyForecast = () => {
                   {day.day}
                 </p>
                 <Image
-                  src={getIcon(day.weatherConditon)}
+                  src={getIcon(day.weatherConditon, day.icon)}
                   alt="weather icon"
                   className=" pr-5"
                 />
