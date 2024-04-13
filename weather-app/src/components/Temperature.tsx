@@ -29,7 +29,7 @@ const Temperature = () => {
 
   return (
     <>
-      <div className="relative my-10 w-[20rem] scale-100  md:scale-[1.15] xl:scale-[1.2] 2xl:scale-[1.5] 2xl:m-auto cursor-default">
+      <div className="relative my-10 w-[20rem] scale-100  md:scale-[1.15] xl:scale-[1.2] 2xl:scale-[1.5] 2xl:m-auto cursor-default text-white">
         <div className="text-center">
           <div className="lg:flex">
             <p className="text-8xl pb-1 font-bold text-center lg:text-left">
