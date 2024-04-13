@@ -4,13 +4,18 @@ import {
   useGlobalContext,
   useGlobalContextUpdate,
 } from "@/app/context/globalContext";
-import React from "react";
+import React, { useState } from "react";
 
 const UnitsChange = () => {
   const { isCelsius, setIsCelsius } = useCelsiusContext();
   const { coords, isGeolocationAvailable, isGeolocationEnabled } =
     useGlobalContext();
   const { setActiveCityCoords } = useGlobalContextUpdate();
+  const [pressed, setPressed] = useState(false);
+
+  function handlePressed() {
+    setPressed(true);
+  }
 
   function getUserLocation(lat: number | undefined, lon: number | undefined) {
     if (isGeolocationAvailable && isGeolocationEnabled && coords) {
@@ -22,7 +27,10 @@ const UnitsChange = () => {
       <div className=" flex justify-end my-4 mx-[2rem] lg:mx-[4rem] xl:mx-[8rem] 2xl:mx-[20rem] ">
         <button
           className=" flex transition ease-out  p-2 mr-5 rounded-lg bg-white bg-opacity-30 active:bg-gray-500 text-white "
-          onClick={() => getUserLocation(coords?.latitude, coords?.longitude)}
+          onClick={() => {
+            handlePressed();
+            getUserLocation(coords?.latitude, coords?.longitude);
+          }}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -64,7 +72,7 @@ const UnitsChange = () => {
         </button>
       </div>
       <div className="absolute mx-auto left-0 right-0 text-center text-red-200">
-        {!isGeolocationEnabled && <div>Geolocation is not enabled</div>}
+        {pressed && !isGeolocationEnabled && <div>Location is not enabled</div>}
       </div>
     </>
   );

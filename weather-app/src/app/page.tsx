@@ -1,6 +1,6 @@
 import PlaceData from "@/components/Forecast/Forecast";
 import SearchBar from "@/components/ui/SearchBar";
-import UnitsChange from "@/components/ui/UnitsChange";
+import HeaderButtons from "@/components/ui/HeaderButtons";
 import Temperature from "@/components/Temperature";
 
 export const metadata = {
@@ -12,7 +12,7 @@ export const metadata = {
 export default function Home() {
   return (
     <>
-      <UnitsChange />
+      <HeaderButtons />
       <div className="flex justify-evenly flex-col lg:flex-row ">
         <section className=" flex flex-col items-center justify-center relative ">
           <SearchBar />

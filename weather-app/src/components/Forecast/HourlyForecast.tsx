@@ -41,8 +41,8 @@ const Forecast = () => {
       return forecast.dt_txt.startsWith(tomorrowString);
     }
   );
-
   const HourlyForecast = [...HourlyForecastToday, ...HourlyForecastTomorrow];
+
   return (
     <div className=" md:scale-125 lg:max-2xl:scale-100 w-auto xl:min-w-[35rem] justify-evenly bg-white bg-opacity-10 p-6 rounded-xl transition ease-out md:hover:scale-[1.3] lg:hover:scale-[1.05] 2xl:hover:scale-[1.3] cursor-default">
       <div className="justify-start">
