@@ -13,7 +13,7 @@ export default function RootLayout({
           <ContextProvider>{children}</ContextProvider>
         </main>
         <footer className=" cursor-default grid place-items-center py-4">
-          <div className="typewriter text-gray-200 flex">
+          <div className="typewritser text-gray-200 flex">
             <span className="tracking-[0.1rem] ">{"</> "}</span>
             Made with{" "}
             <span className="animate-heartbeat mx-1">
@@ -31,9 +31,7 @@ export default function RootLayout({
               </svg>
             </span>{" "}
             by{" "}
-            <span className="text-green-300 tracking-[0.025rem] font-bold">
-              Lan Skrobar
-            </span>
+            <span className="text-green-300 font-bold mx-1"> Lan Skrobar</span>
           </div>
         </footer>
       </body>
