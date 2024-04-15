@@ -23,8 +23,7 @@ const Temperature = () => {
   const minTemp = Math.round(main?.temp_min);
   const maxTemp = Math.round(main?.temp_max);
 
-  const { description } = weather;
-
+  const { description } = weather[0];
   const icon = getIcon(weather[0].description, weather[0].icon);
 
   return (
